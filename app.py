@@ -16,8 +16,6 @@ def wait():
 	response = twiml.Response()
 	response.say("Thank you for calling little grinch.")
 	response.say("You are number %s in the queue." % request.form['QueuePosition'])
-
-	response.play("http://demo.brooklynhacker/music/christmas.mp3")
 	return str(response)
 
 
