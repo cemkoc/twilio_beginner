@@ -18,6 +18,14 @@ def wait():
 	response.say("You are number %s in the queue." % request.form['QueuePosition'])
 	return str(response)
 
+@app.route('/agent', methods['POST'])
+def agent():
+	response = twiml.Response()
+	with response.dial() as dial:
+		dial.queue("Christmas Call Queue")
+	return str(response)
+	
+
 
 if __name__ == "__main__":
 	port = int(os.environ.get('PORT', 5000))
