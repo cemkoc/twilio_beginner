@@ -8,7 +8,16 @@ app = Flask(__name__)
 @app.route('/caller', methods=['POST'])
 def caller():
 	response = twiml.Response()
-	response.enqueue("Christmas Call Queue")
+	response.enqueue("Christmas Call Queue", waitUrl="/wait")
+	return str(response)
+
+@app.route('/wait', methods=['POST'])
+def wait():
+	response = twiml.Response()
+	response.say("Thank you for calling little grinch.")
+	response.say("You are number %s in the queue." % request.form['QueuePosition'])
+
+	response.play("http://demo.brooklynhacker/music/christmas.mp3")
 	return str(response)
 
 
